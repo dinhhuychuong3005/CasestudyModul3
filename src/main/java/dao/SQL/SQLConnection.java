@@ -8,7 +8,7 @@ public class SQLConnection {
     private String jdbcUsername = "root";
     private String jdbcPassword = "123456";
 
-    protected java.sql.Connection getConnection() {
+    public java.sql.Connection getConnection() {
         java.sql.Connection connection = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
