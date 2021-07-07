@@ -1,15 +1,17 @@
 package controller;
 
-import dao.OrderDetail.OrderDetailDAO;
+import model.Product;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-@WebServlet(name = "Servlet3", value = "/Servlet3")
-public class OrderDetailServlet extends HttpServlet {
-    OrderDetailDAO orderDetailDAO = new OrderDetailDAO();
+@WebServlet(name = "CartServlet", value = "/CartServlet")
+public class CartServlet extends HttpServlet {
+    List<Product> cart = new ArrayList<>();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -19,7 +21,6 @@ public class OrderDetailServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
-    public void addToCart(){
 
-    }
+
 }

@@ -85,7 +85,7 @@ public class ProductServlet extends HttpServlet {
     private void listProduct(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
         List<Product> list = productDAO.getAllProduct();
         request.setAttribute("list", list);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("Product/product.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("Product/Test2.jsp");
         dispatcher.forward(request, response);
     };
     public void createProduct(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {

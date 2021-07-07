@@ -2,13 +2,18 @@
   Created by IntelliJ IDEA.
   User: Windboy
   Date: 07/07/2021
-  Time: 2:29 CH
+  Time: 2:42 CH
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<!DOCTYPE html>
+
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Products - RedStore</title>
     <link rel="stylesheet" href="style.css">
@@ -418,7 +423,6 @@
             text-align: center;
             padding: 20px 0;
             margin: auto;
-
             overflow: hidden;
         }
         .form-container span{
@@ -522,9 +526,43 @@
                 display: none;
             }
         }
-    </style>
+        .button1 {
+            background-image: linear-gradient(135deg, #008aff, #86d472);
+            border-radius: 6px;
+            box-sizing: border-box;
+            color: #ffffff;
+            display: block;
+            height: 30px;
+            font-size: 1.4em;
+            font-weight: 600;
+            padding: 4px;
+            position: relative;
+            text-decoration: none;
+            width: 5em;
+            z-index: 2;
+        }
 
+        .button1:hover {
+            color: #fff;
+        }
+
+        .button1 .btn1 {
+            align-items: center;
+            background: #0e0e10;
+            border-radius: 6px;
+            display: flex;
+            justify-content: center;
+            height: 100%;
+            transition: background 0.5s ease;
+            width: 100%;
+        }
+
+        .button1:hover .btn1 {
+            background: transparent;
+        }
+    </style>
 </head>
+
 <body>
 <div class="container">
     <div class="navbar">
@@ -534,7 +572,7 @@
         <nav>
             <ul id="MenuItems">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="products.html">Products</a></li>
+                <li><a href="/product">Products</a></li>
                 <li><a href="">About</a></li>
                 <li><a href="">Contact</a></li>
                 <li><a href="account.html">Account</a></li>
@@ -562,155 +600,24 @@
     </div>
 
     <div class="row">
-        <div class="col-4">
-            <a href="products_detal.html"><img src="images/product-1.jpg"></a>
-            <h4>Red Printed T-Shirt</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-o"></i>
-            </div>
-            <p>$50.00</p>
-        </div>
-        <div class="col-4">
-            <img src="images/product-2.jpg">
-            <h4>Red Printed T-Shirt</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-half-o"></i>
-                <i class="fa fa-star-o"></i>
-            </div>
-            <p>$50.00</p>
-        </div>
-        <div class="col-4">
-            <img src="images/product-3.jpg">
-            <h4>Red Printed T-Shirt</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-half-o"></i>
-            </div>
-            <p>$50.00</p>
-        </div>
-        <div class="col-4">
-            <img src="images/product-4.jpg">
-            <h4>Red Printed T-Shirt</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-o"></i>
-            </div>
-            <p>$50.00</p>
-        </div>
+        <c:forEach items="${list}" var="p">
+                <div class="col-4">
+                    <img src="${p.productImage}">
+                    <h4>${p.productName}</h4>
+                    <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-o"></i>
+                    </div>
+                    <p>${p.productPrice}</p> <button style="cursor: pointer" class="button1">Order</button>
+                </div>
+
+
+            </c:forEach>
     </div>
-    <div class="row">
-        <div class="col-4">
-            <img src="images/product-5.jpg">
-            <h4>Red Printed T-Shirt</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-o"></i>
-            </div>
-            <p>$50.00</p>
-        </div>
-        <div class="col-4">
-            <img src="images/product-6.jpg">
-            <h4>Red Printed T-Shirt</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-half-o"></i>
-                <i class="fa fa-star-o"></i>
-            </div>
-            <p>$50.00</p>
-        </div>
-        <div class="col-4">
-            <img src="images/product-7.jpg">
-            <h4>Red Printed T-Shirt</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-half-o"></i>
-            </div>
-            <p>$50.00</p>
-        </div>
-        <div class="col-4">
-            <img src="images/product-8.jpg">
-            <h4>Red Printed T-Shirt</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-o"></i>
-            </div>
-            <p>$50.00</p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-4">
-            <img src="images/product-9.jpg">
-            <h4>Red Printed T-Shirt</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-o"></i>
-            </div>
-            <p>$50.00</p>
-        </div>
-        <div class="col-4">
-            <img src="images/product-10.jpg">
-            <h4>Red Printed T-Shirt</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-half-o"></i>
-                <i class="fa fa-star-o"></i>
-            </div>
-            <p>$50.00</p>
-        </div>
-        <div class="col-4">
-            <img src="images/product-11.jpg">
-            <h4>Red Printed T-Shirt</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-half-o"></i>
-            </div>
-            <p>$50.00</p>
-        </div>
-        <div class="col-4">
-            <img src="images/product-12.jpg">
-            <h4>Red Printed T-Shirt</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star-o"></i>
-            </div>
-            <p>$50.00</p>
-        </div>
-    </div>
+
     <div class="page-btn">
         <span>1</span>
         <span>2</span>
@@ -777,4 +684,6 @@
     </script>
 </div>
 </body>
+
+
 </html>
