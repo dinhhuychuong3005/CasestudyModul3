@@ -9,10 +9,8 @@ public interface ICustomer {
     List<Customer> findAll()throws SQLException ;
     void  add(Customer customer) throws SQLException;
     List<Customer> findByName(String customerName) throws SQLException;
-    Customer findByID(int customerId) throws SQLException;
-    Customer findByPhone(int phone) throws SQLException;
-    void update(Customer customer) throws SQLException;
-    void deleteById(int customerID);
+    Customer findByID(int customerID) throws SQLException;
+    Customer findByPhone(int customerPhone) throws SQLException;
     boolean checkLogin(String username, String password);
 
 }
