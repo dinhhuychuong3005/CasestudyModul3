@@ -1,14 +1,13 @@
 package model;
-
 public class Customer {
     private int customerID;
     private String customerName;
-    private int customerPhone;
+    private String customerPhone;
     private String customerEmail;
     private String userName;
     private String password;
 
-    public Customer(int customerID, String customerName, int customerPhone, String customerEmail, String userName, String password) {
+    public Customer(int customerID, String customerName, String customerPhone, String customerEmail, String userName, String password) {
         this.customerID = customerID;
         this.customerName = customerName;
         this.customerPhone = customerPhone;
@@ -16,13 +15,14 @@ public class Customer {
         this.userName = userName;
         this.password = password;
     }
-    public Customer( String customerName, int customerPhone, String customerEmail, String userName, String password) {
+    public Customer( String customerName, String customerPhone, String customerEmail, String userName, String password) {
         this.customerName = customerName;
         this.customerPhone = customerPhone;
         this.customerEmail = customerEmail;
         this.userName = userName;
         this.password = password;
     }
+
     public int getCustomerID() {
         return customerID;
     }
@@ -39,11 +39,11 @@ public class Customer {
         this.customerName = customerName;
     }
 
-    public int getCustomerPhone() {
+    public String getCustomerPhone() {
         return customerPhone;
     }
 
-    public void setCustomerPhone(int customerPhone) {
+    public void setCustomerPhone(String customerPhone) {
         this.customerPhone = customerPhone;
     }
 

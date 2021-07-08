@@ -10,7 +10,7 @@ public interface ICustomer {
     void  add(Customer customer) throws SQLException;
     List<Customer> findByName(String customerName) throws SQLException;
     Customer findByID(int customerID) throws SQLException;
-    Customer findByPhone(int customerPhone) throws SQLException;
+    List<Customer> findByPhone(String customerPhone) throws SQLException;
     boolean checkLogin(String username, String password);
 
 }

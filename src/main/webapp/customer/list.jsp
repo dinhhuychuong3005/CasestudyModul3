@@ -6,7 +6,6 @@
     <title>Title</title>
 </head>
 <body>
-
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -39,24 +38,32 @@
                 <div class="card-body row no-gutters align-items-center">
                     <div class="col-auto">
                         <i class="fas fa-search h4 text-body"></i>
+                        <div class="col">
+                            <input type="hidden" name="action" value="search">
+                            <input type="text" name="key" class="form-control form-control-lg form-control-borderless" placeholder="Search topics or keywords">
+                        </div>
+                        <div class="col-auto">
+                            <select name="type">
+                                <option value="name">Tìm theo tên</option>
+                                <option value="phone">Tìm theo số điện thoại</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="col">
-                        <input type="hidden" name="action" value="search">
-                         <input type="text" name="customerName"class="form-control form-control-lg form-control-borderless" placeholder="Search topics or keywords">
+                    <div class="col-auto" align="right">
+                        <input class="btn btn-lg btn-success" type="submit" value="Search"                                                                                                                                                          >
                     </div>
-                    <div class="col-auto">
-                        <button class="btn btn-lg btn-success" type="submit">Search</button>
+                    <div class="col-auto" align="right">
+                        <input class="btn btn-lg btn-success" type="submit" value="come back"                                                                                                                                                        >
                     </div>
-                </div>
-                <div class="col-auto" align="right">
-                    <input class="btn btn-lg btn-success" type="submit" value="come back"                                                                                                                                                           >
                 </div>
             </form>
         </div>
     </div>
 
 </div>
-<a href="/customers?action=create">create customer</a>
+<div>
+    <input class="btn btn-lg btn-success" type="submit" value="Back" >
+</div>
 <div class="bs-example">
     <table class="table table-bordered">
         <thead>
@@ -70,7 +77,7 @@
         </tr>
         <c:forEach items="${customers}" var="cus">
         <tr class="b">
-            <th><a href="/customers?action=view&id=${cus.customerID}">${cus.customerName} </a></th>
+            <th>${cus.customerName} </a></th>
             <th>${cus.customerPhone} </a></th>
             <th>${cus.customerEmail} </a></th>
             <th>${cus.userName} </a></th>

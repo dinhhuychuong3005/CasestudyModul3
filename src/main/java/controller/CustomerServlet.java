@@ -23,11 +23,16 @@ public class CustomerServlet extends HttpServlet {
             case "create":
                 showCreatePage(request, response);
                 break;
-            case "view":
-                showViewPage(request, response);
+            case "search": ;
+               String type = request.getParameter("type");
+               if (type.equals("name")){
+                   showSearchName(request, response);
+               }else if (type.equals("phone")){
+                   showSearchPhone(request,response);
+               }
                 break;
-            case "search":
-                showSearchPage(request, response);
+            case "Back":
+                backToList(request,response);
                 break;
             default:
                 showListPage(request, response);
@@ -38,7 +43,10 @@ public class CustomerServlet extends HttpServlet {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("customer/create.jsp");
         requestDispatcher.forward(request, response);
     }
-
+    private void backToList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("admin/admin.jsp");
+        requestDispatcher.forward(request, response);
+    }
     private void showViewPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("customer/view.jsp");
         int id = Integer.parseInt(request.getParameter("id"));
@@ -51,11 +59,23 @@ public class CustomerServlet extends HttpServlet {
         requestDispatcher.forward(request, response);
     }
 
-    private void showSearchPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void showSearchName(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("customer/list.jsp");
-        String key = request.getParameter("customerName");
+        String key = request.getParameter("key");
         try {
             List<Customer> customers = customerDAO.findByName(key);
+            request.setAttribute("customers", customers);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        requestDispatcher.forward(request, response);
+
+    }
+    private void showSearchPhone(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("customer/list.jsp");
+        String key = request.getParameter("key");
+        try {
+            List<Customer> customers = customerDAO.findByPhone(key);
             request.setAttribute("customers", customers);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -93,7 +113,7 @@ public class CustomerServlet extends HttpServlet {
 
     private void addCustomer(HttpServletRequest request, HttpServletResponse response) {
         String customerName = request.getParameter("customerName");
-        int customerPhone= Integer.parseInt(request.getParameter("customerPhone"));
+        String customerPhone=request.getParameter("customerPhone");
         String customerEmail=request.getParameter("customerEmail");
         String userName=request.getParameter("userName");
         String password= request.getParameter("password");
