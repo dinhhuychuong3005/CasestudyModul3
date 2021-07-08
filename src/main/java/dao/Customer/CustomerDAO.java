@@ -111,7 +111,7 @@ public class CustomerDAO implements ICustomer {
         boolean isValid = false;
         try {
             Connection connection = sqlConnection.getConnection();
-            String sql = "select * from customers where userName = ? and password = ?;";
+            String sql = "select * from customer where userName = ? and password = ?;";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1, username);
             preparedStatement.setString(2, password);

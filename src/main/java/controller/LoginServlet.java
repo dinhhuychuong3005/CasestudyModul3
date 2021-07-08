@@ -18,7 +18,7 @@ public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //        RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
 //        dispatcher.forward(request, response);
-////        RequestDispatcher dispatcher;
+//        RequestDispatcher dispatcher;
 //
 //        String userName = request.getParameter("userName");
 //        String passWord = request.getParameter("passWord");
@@ -63,19 +63,22 @@ public class LoginServlet extends HttpServlet {
     }
 
     public void goTo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        RequestDispatcher requestDispatcher = request.getRequestDispatcher("admin/admin.jsp");
-//        requestDispatcher.forward(request,response);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("admin/admin.jsp");
+        requestDispatcher.forward(request,response);
         String  userName = request.getParameter("userName");
         String passWord = request.getParameter("passWord");
         boolean check = customer.checkLogin(userName, passWord);
         HttpSession session = request.getSession();
         RequestDispatcher dispatcher;
+
         if (userName.equals("admin") && passWord.equals("admin1")) {
             dispatcher = request.getRequestDispatcher("admin/admin.jsp");
             dispatcher.forward(request, response);
-        } else if (check) {
+        }
+        if (check) {
             session.setAttribute("username", userName);
-            response.sendRedirect("/product");
+            dispatcher = request.getRequestDispatcher("Product/Test2.jsp");
+            dispatcher.forward(request, response);
         }
     }
 
