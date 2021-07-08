@@ -1,21 +1,16 @@
 <%--
   Created by IntelliJ IDEA.
   User: Windboy
-  Date: 07/07/2021
-  Time: 2:42 CH
+  Date: 08/07/2021
+  Time: 8:33 SA
   To change this template use File | Settings | File Templates.
 --%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
-
-<html lang="en">
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <head>
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Products - RedStore</title>
+    <title>Printd T-Shirt - RedStore</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
           rel="stylesheet">
@@ -423,6 +418,7 @@
             text-align: center;
             padding: 20px 0;
             margin: auto;
+
             overflow: hidden;
         }
         .form-container span{
@@ -526,40 +522,6 @@
                 display: none;
             }
         }
-        .button1 {
-            background-image: linear-gradient(135deg, #008aff, #86d472);
-            border-radius: 6px;
-            box-sizing: border-box;
-            color: #ffffff;
-            display: block;
-            height: 30px;
-            font-size: 1.4em;
-            font-weight: 600;
-            padding: 4px;
-            position: relative;
-            text-decoration: none;
-            width: 5em;
-            z-index: 2;
-        }
-
-        .button1:hover {
-            color: #fff;
-        }
-
-        .button1 .btn1 {
-            align-items: center;
-            background: #0e0e10;
-            border-radius: 6px;
-            display: flex;
-            justify-content: center;
-            height: 100%;
-            transition: background 0.5s ease;
-            width: 100%;
-        }
-
-        .button1:hover .btn1 {
-            background: transparent;
-        }
     </style>
 </head>
 
@@ -572,58 +534,54 @@
         <nav>
             <ul id="MenuItems">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="/product">Products</a></li>
+                <li><a href="products.html">Products</a></li>
                 <li><a href="">About</a></li>
                 <li><a href="">Contact</a></li>
-                <li><a href="/login">Account</a></li> // chuyển hướng
+                <li><a href="account.html">Account</a></li>
             </ul>
         </nav>
         <a href="cart.html"><img src="images/cart.png" width="30px" height="30px"></a>
         <img src="images/menu.png" class="menu-icon" onclick="menutoggle()">
     </div>
 </div>
-</div>
+<!-- ------------Account-page------------------- -->
+<div class="account-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-2">
+                <img src="images/image1.png" width="100%">
+            </div>
 
-
-
-<div class="small-container">
-
-    <div class="row row-2">
-        <h2>All Products</h2>
-        <select>
-            <option>Default Shop</option>
-            <option>Short by price</option>
-            <option>Short by popularity</option>
-            <option>Short by Rating</option>
-            <option>Short by Sale</option>
-        </select>
-    </div>
-
-    <div class="row">
-        <c:forEach items="${list}" var="p">
-                <div class="col-4">
-                    <img src="${p.productImage}">
-                    <h4>${p.productName}</h4>
-                    <div class="rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star-o"></i>
+            <div class="col-2">
+                <div class="form-container">
+                    <div class="form-btn">
+                        <span onclick="login()">Login</span>
+                        <span onclick="register()">Register</span>
+                        <hr id="Indicator">
                     </div>
-                    <p>${p.productPrice}</p> <button style="cursor: pointer" class="button1">Order</button>
+
+                    <form id="LoginForm" method="post">
+                        <input type="hidden" name="action" value="goto">
+                        <input type="text" placeholder="Username" name="userName">
+                        <input type="password" placeholder="Password" name="passWord">
+                        <button type="submit" class="btn">Login</button>
+                        <a href="">Forgot password</a>
+                    </form>
+
+                    <form id="RegForm" method="post">
+                        <input type="hidden" name="action" value="addCustomer">
+                        <input type="text" placeholder="name" name="name">
+                        <input type="text" placeholder="phone" name="phone">
+                        <input type="email" placeholder="Email" name="email">
+                        <input type="text" placeholder="Username" name="userName">
+                        <input type="password" placeholder="Password" name="password">
+
+                        <button type="submit" class="btn">Register</button>
+                    </form>
+
                 </div>
-
-
-            </c:forEach>
-    </div>
-
-    <div class="page-btn">
-        <span>1</span>
-        <span>2</span>
-        <span>3</span>
-        <span>4</span>
-        <span>&#8594;</span>
+            </div>
+        </div>
     </div>
 </div>
 <!-- ------------footer----------- -->
@@ -664,7 +622,7 @@
             </div>
         </div>
         <hr>
-        <p class="Copyright">P-N 1999</p>
+        <p class="Copyright">Copyright 2020 - By QuocHuy</p>
     </div>
     <!-- ------------------- js for toggle menu-------------- -->
     <script>
@@ -682,8 +640,28 @@
         }
 
     </script>
+    <!-- ------------------- js for Account form-------------- -->
+
+    <script>
+        var LoginForm = document.getElementById("LoginForm");
+        var RegForm = document.getElementById("RegForm");
+        var Indicator = document.getElementById("Indicator");
+
+        function register() {
+            RegForm.style.transform = "translateX(0px)";
+            LoginForm.style.transform = "translateX(0px)";
+            Indicator.style.transform = "translateX(100px)";
+
+        }
+        function login() {
+            RegForm.style.transform = "translateX(300px)";
+            LoginForm.style.transform = "translateX(300px)";
+            Indicator.style.transform = "translateX(0px)";
+        }
+
+
+    </script>
 </div>
 </body>
-
 
 </html>

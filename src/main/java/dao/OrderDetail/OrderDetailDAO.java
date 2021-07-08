@@ -14,8 +14,10 @@ import java.util.List;
 public class OrderDetailDAO implements IOrderDetail {
         SQLConnection sqlConnection = new SQLConnection();
 
+
+
     @Override
-    public void addOrderDetail(OrderDetail orderDetail) throws SQLException {
+    public void createOrderDetail(OrderDetail orderDetail) throws SQLException {
         Connection connection =sqlConnection.getConnection();
         PreparedStatement preparedStatement=connection.prepareStatement("insert into orderdetail values(?,?,?,?)");
         preparedStatement.setInt(1,orderDetail.getOrderId());
@@ -26,7 +28,30 @@ public class OrderDetailDAO implements IOrderDetail {
     }
 
     @Override
-    public List<OrderDetail> findAllOrderDetail() {
+    public List<OrderDetail> searchOrderDetail(int id) {
+        Connection connection = sqlConnection.getConnection();
+        List<OrderDetail> list = new ArrayList<>();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("select *from orderdetail where orderId = ?");
+
+            preparedStatement.setInt(1, id);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                int productId = rs.getInt(2);
+                int quantity = rs.getInt(3);
+                int total = rs.getInt(4);
+
+                OrderDetail orderDetail = new OrderDetail(id, productId, quantity, total);
+                list.add(orderDetail);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    @Override
+    public List<OrderDetail> getAllOrderDetail() {
         Connection connection = sqlConnection.getConnection();
         List<OrderDetail> list = new ArrayList<>();
         try {
@@ -47,28 +72,7 @@ public class OrderDetailDAO implements IOrderDetail {
         }
         return list;
     }
-    @Override
-    public List<OrderDetail> searchById(int id) {
-        Connection connection = sqlConnection.getConnection();
-        List<OrderDetail> list = new ArrayList<>();
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement("select *from orderdetail where orderId = ?");
 
-            preparedStatement.setInt(1, id);
-            ResultSet rs = preparedStatement.executeQuery();
-            while (rs.next()) {
-                int productId = rs.getInt(2);
-                int quantity = rs.getInt(3);
-                int total = rs.getInt(4);
-
-                OrderDetail orderDetail = new OrderDetail(id, productId, quantity, total);
-                list.add(orderDetail);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-return list;
-    }
     @Override
     public boolean deleteOrderDetail(int id,int id2) throws SQLException {
         Connection connection = sqlConnection.getConnection();

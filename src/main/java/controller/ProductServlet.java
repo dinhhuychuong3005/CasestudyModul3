@@ -77,7 +77,6 @@ public class ProductServlet extends HttpServlet {
         String description = request.getParameter("productDescription");
         String image = request.getParameter("productImage");
         int categoryId = Integer.parseInt(request.getParameter("categoryId"));
-
         Product updateProduct = new Product(id, name, price, color, quantity, description, image, categoryId);
         productDAO.updateProduct(updateProduct);
 
@@ -85,7 +84,9 @@ public class ProductServlet extends HttpServlet {
     private void listProduct(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
         List<Product> list = productDAO.getAllProduct();
         request.setAttribute("list", list);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("Product/Test2.jsp");
+        HttpSession session = request.getSession();
+        String username = (String) session.getAttribute("username");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("Product/product.jsp");
         dispatcher.forward(request, response);
     };
     public void createProduct(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {

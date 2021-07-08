@@ -1,18 +1,12 @@
 package controller;
 
-import model.OrderDetail;
-import model.Product;
-
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
-@WebServlet(name = "CartServlet", value = "/CartServlet")
-public class CartServlet extends HttpServlet {
-    List<OrderDetail> cart = new ArrayList<>();
+@WebServlet(name = "UserProductServlet", value = "/UserProductServlet")
+public class UserProductServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -22,6 +16,5 @@ public class CartServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
-
 
 }

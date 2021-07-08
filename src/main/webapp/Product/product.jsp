@@ -49,7 +49,7 @@
     <div class="badge badge-primary text-wrap" style="width: 15rem; font-size: larger; text-align: center">
         PRODUCT MANAGEMENT
     </div><br><br>
-    <a href="/admin.jsp" class="btn btn-outline-info">Back to ADMIN</a><br><br>
+    <a href="/admin/admin.jsp" class="btn btn-outline-info">Back to ADMIN</a><br><br>
     <a href="/product?action=create" class="btn btn-outline-info">Create new Product</a><br><br>
 </center>
 <table class="table table-hover">
